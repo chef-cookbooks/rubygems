@@ -34,4 +34,34 @@ Recipes
 
 default
 
+Resources
+=========
+
+This cookbook provides the `rubygems_api` resource, which lets you manage ownership
+of gems on [rubygems.org](https://rubygems.org). To do so, you can do this:
+
+```ruby
+rubygems_api do
+  gem "chef" do
+    owners << "jkeiser"
+  end
+end
+```
+
+Or this:
+
+```ruby
+rubygems_api do
+  user "jkeiser" do
+    owned_gems << "chef"
+  end
+end
+```
+
+If you want to set `owners` or `owned_gems` to a specific set of users and have it
+remove all others, you can add `purge true` to either `user` or `gem` resource.
+
+To talk to a custom gem server, you can say `rubygems_api "https://otherserver.com" do ... end`.
+You can also modify the API key you are by specifying the `api_key` property under `rubygems_api`.
+
 Author:: Apache v2 (<Sean OMeara <someara@opscode.com>>)
