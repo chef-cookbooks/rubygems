@@ -64,3 +64,10 @@ action :create do
     end
   end
 end
+
+# sadness :(
+action_class do
+  def whyrun_supported?
+    true
+  end
+end

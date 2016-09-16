@@ -1,7 +1,7 @@
 require 'set'
 
 #
-#
+# This user's rubygems handle.
 #
 property :handle, String, identity: true, default: lazy { name }
 property :rubygems_api, RubygemsCookbook::Api, identity: true, default: lazy { RubygemsCookbook::Api.new("rubygems.org") }
@@ -57,5 +57,12 @@ action :create do
         Chef::Log.info "would remove #{handle} from ownership of #{add_gem}, but purge is off"
       end
     end
+  end
+end
+
+# sadness :(
+action_class do
+  def whyrun_supported?
+    true
   end
 end
