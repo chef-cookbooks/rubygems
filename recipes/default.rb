@@ -39,8 +39,8 @@ if node['rubygems']['chef_gem_disable_default'] then
   end.run_action(:run)
 end
 
-node['rubygems']['chef_gem_sources'].each do |source|
-  execute "/opt/chef/embedded/bin/gem sources --add #{source}" do
-    not_if "gem sources --list | grep '#{source}'"
-  end.run_action(:run)
+gemrc :global do
+  values(
+    sources: node['rubygems']['chef_gem_sources']
+  )
 end

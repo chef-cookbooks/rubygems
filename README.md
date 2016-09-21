@@ -29,6 +29,69 @@ Attributes
     default['rubygems']['chef_gem_disable_default'] = false
     default['rubygems']['chef_gem_sources'] = [ 'https://rubygems.org' ]
 
+Resources
+=========
+This cookbook provides two simple resources which allow you to set any
+key/value configuration for the gemrc or bundle config files.
+
+gemrc
+-----
+Configures the gemrc.
+
+### Attributes
+ - `path`   - Accepts sybols `:global`, `:local`, or a string litteral path to
+              the `.gemrc` file. _Default: Name of Resource Instance_
+ - `user`   - Owner of gemrc file.
+ - `group`  - Group associated to gemrc file.
+ - `values` - Hash containing all key/values to configure.
+
+### Action
+ - `:create` - _Default Action_
+
+### Usage
+Global configuration usage:
+```ruby
+gemrc :global do
+  values(
+    sources: %w{ http://localhost:9292 https://rubygems.org }
+  )
+end
+```
+ 
+ 
+Litteral path usage:
+
+```ruby
+gemrc '/path/to/.gemrc' do
+  values(
+    sources: %w{ http://localhost:9292 https://rubygems.org }
+  )
+end
+```
+
+
+bundle_config
+-------------
+Configures bundler.
+
+### Attributes
+ - `path`   - A litteral path to the `.gemrc` file. _Default: Name of Resource Instance_
+ - `user`   - Owner of gemrc file.
+ - `group`  - Group associated to gemrc file.
+ - `values` - Hash containing all key/values to configure.
+
+### Action
+ - `:create` - _Default Action_
+
+### Usage
+```ruby
+bundle_config '/path/to/.bundle/config' do
+  values(
+    { 'BUNDLE_MIRROR__HTTPS://RUBYGEMS__ORG/' => 'http://localhost:9292' }
+  )
+end
+```
+
 Recipes
 =======
 
