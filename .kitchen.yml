@@ -1,0 +1,30 @@
+---
+driver:
+  name: docker
+
+provisioner:
+  name: chef_zero
+
+verifier:
+    name: inspec
+
+platforms:
+  - name: ubuntu-14.04
+  - name: centos-7.2
+
+suites:
+  - name: gemrc-global
+    run_list:
+      - recipe[test_rubygems::gemrc_global]
+  - name: gemrc-local
+    run_list:
+      - recipe[test_rubygems::gemrc_local]
+  - name: gemrc-explicit-path
+    run_list:
+      - recipe[test_rubygems::gemrc_explicit_path]
+  - name: gemrc-local-merge
+    run_list:
+      - recipe[test_rubygems::gemrc_local_merge]
+  - name: bundle-config
+    run_list:
+      - recipe[test_rubygems::bundle_config]

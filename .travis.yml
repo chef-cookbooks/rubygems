@@ -1,0 +1,30 @@
+language: ruby
+sudo: false
+cache: bundler
+services:
+  - docker
+
+addons:
+  apt:
+    packages:
+    - libgecode-dev
+    - coreutils
+
+env:
+  global:
+  - USE_SYSTEM_GECODE=true
+  matrix:
+    - KITCHEN_REGEXP=gemrc-global-ubuntu-1404
+    - KITCHEN_REGEXP=gemrc-global-centos-72
+    - KITCHEN_REGEXP=gemrc-local-ubuntu-1404
+    - KITCHEN_REGEXP=gemrc-local-centos-72
+    - KITCHEN_REGEXP=gemrc-explicit-path-ubuntu-1404
+    - KITCHEN_REGEXP=gemrc-explicit-path-centos-72
+    - KITCHEN_REGEXP=gemrc-local-merge-ubuntu-1404
+    - KITCHEN_REGEXP=gemrc-local-merge-centos-72
+    - KITCHEN_REGEXP=bundle-config-ubuntu-1404
+    - KITCHEN_REGEXP=bundle-config-centos-72
+
+script:
+  - bundle exec rake
+  - bundle exec rake integration:kitchen:$KITCHEN_REGEXP

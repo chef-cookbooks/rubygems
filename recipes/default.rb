@@ -1,9 +1,10 @@
 #
+# Author:: Ryan Hass <rhass@chef.io>
 # Author:: Sean OMeara <someara@opscode.com>
 # Cookbook Name:: rubygems
 # Recipe:: default
 #
-# Copyright 2009-2013, Opscode, Inc.
+# Copyright 2009-2016, Chef Inc.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -20,27 +21,33 @@
 #
 
 # gem_package sources
-if node['rubygems']['gem_disable_default'] then
-  execute "gem sources --remove http://rubygems.org" do
-    only_if "gem sources --list | grep 'http://rubygems.org'"
-  end.run_action(:run)
+gemrc "local_disable_default" do
+  name :local
+  values(
+    sources: node["rubygems"]["gem_sources"] - %w{http://rubygems.org https://rubygems.org}
+  )
+  only_if { node["rubygems"]["gem_disable_default"] }
 end
 
-node['rubygems']['gem_sources'].each do |source|
-  execute "gem sources --add #{source}" do
-    not_if "gem sources --list | grep '#{source}'"
-  end.run_action(:run)
+gemrc "local_gem_sources" do
+  name :local
+  values(
+    sources: node["rubygems"]["gem_sources"]
+  )
 end
 
 # chef_gem sources
-if node['rubygems']['chef_gem_disable_default'] then
-  execute "/opt/chef/embedded/bin/gem sources --remove http://rubygems.org/" do
-    only_if "gem sources --list | grep 'http://rubygems.org'"
-  end.run_action(:run)
+gemrc "chef_gem_disable_default" do
+  name :global
+  values(
+    sources: node["rubygems"]["chef_gem_sources"] - %w{http://rubygems.org https://rubygems.org}
+  )
+  only_if { node["rubygems"]["chef_gem_disable_default"] }
 end
 
-gemrc :global do
+gemrc "chef_gem_sources" do
+  name :global
   values(
-    sources: node['rubygems']['chef_gem_sources']
+    sources: node["rubygems"]["chef_gem_sources"]
   )
 end

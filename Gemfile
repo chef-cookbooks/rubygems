@@ -1,3 +1,14 @@
-source 'https://rubygems.org'
+source "https://rubygems.org"
 
-gem 'berkshelf'
+gem "berkshelf"
+gem "chefstyle"
+gem "chefspec"
+gem "foodcritic"
+gem "inspec"
+gem "kitchen-docker"
+gem "kitchen-inspec", "< 0.15.2", "~> 0.15"
+gem "kitchen-vagrant"
+gem "rake"
+gem "rspec"
+gem "stove"
+gem "test-kitchen"
