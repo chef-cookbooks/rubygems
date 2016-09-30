@@ -5,24 +5,21 @@
 Description
 ===========
 
-This cookbook configured "system" and Omnibus Chef gem sources.
+This cookbook configures "system" and Omnibus Chef gem sources, as well as
+providing the `rubygems_api` resource, which lets you manage ownership of
+gems on [rubygems.org](https://rubygems.org).
 
 Requirements
 ============
-Omnibus Chef 11 or above
+Omnibus Chef 12.8.1 or above
 
 Usage
 =====
 
-From a Vagrantfile, role, or environment definition, set something
-like this, to point at a privately hosted rubygems mirror:
-
-    :rubygems => {
-      :gem_disable_default => true,
-      :gem_sources => [],
-      :chef_gem_disable_default => true,
-      :chef_gem_sources => [ 'http://33.33.33.51/rubygems/' ]
-    },
+There are two ways to use this cookbook. The legacy way is to set the desired
+attributes and simply `include_recipe 'rubygems'`. The modern and recommended
+way is to call the `gemrc` and/or `bundle_config` resources as shown in the
+[Resources](#resources) section below.
 
 Attributes
 ==========
@@ -33,10 +30,40 @@ Attributes
     default['rubygems']['chef_gem_disable_default'] = false
     default['rubygems']['chef_gem_sources'] = [ 'https://rubygems.org' ]
 
-Resources
+[Resources](#resources)
 =========
 This cookbook provides two simple resources which allow you to set any
-key/value configuration for the gemrc or bundle config files.
+key/value configuration for the gemrc or bundle config files. Additionaly
+this cookbook provides the `rubygems_api` resource, which lets you manage
+ownership of gems on [rubygems.org](https://rubygems.org).
+
+rubygems_api
+------------
+
+```ruby
+rubygems_api do
+  gem "chef" do
+    owners << "jkeiser"
+  end
+end
+```
+
+Or this:
+
+```ruby
+rubygems_api do
+  user "jkeiser" do
+    owned_gems << "chef"
+  end
+end
+```
+
+If you want to set `owners` or `owned_gems` to a specific set of users and have it
+remove all others, you can add `purge true` to either `user` or `gem` resource.
+
+To talk to a custom gem server, you can say `rubygems_api "https://otherserver.com" do ... end`.
+You can also modify the API key you are by specifying the `api_key` property under `rubygems_api`.
+
 
 gemrc
 -----
@@ -99,43 +126,13 @@ end
 Recipes
 =======
 
-default
-
-Resources
-=========
-
-This cookbook provides the `rubygems_api` resource, which lets you manage ownership
-of gems on [rubygems.org](https://rubygems.org). To do so, you can do this:
-
-```ruby
-rubygems_api do
-  gem "chef" do
-    owners << "jkeiser"
-  end
-end
-```
-
-Or this:
-
-```ruby
-rubygems_api do
-  user "jkeiser" do
-    owned_gems << "chef"
-  end
-end
-```
-
-If you want to set `owners` or `owned_gems` to a specific set of users and have it
-remove all others, you can add `purge true` to either `user` or `gem` resource.
-
-To talk to a custom gem server, you can say `rubygems_api "https://otherserver.com" do ... end`.
-You can also modify the API key you are by specifying the `api_key` property under `rubygems_api`.
+ - default
 
 License and Authors
 ===================
-Author:: Sean OMeara (<sean@sean.io>)
-Author:: John Keiser (<jkeiser@chef.io>)
-Author:: Ryan Hass (<rhass@chef.io>)
+ - Author:: Sean OMeara (<sean@sean.io>)
+ - Author:: John Keiser (<jkeiser@chef.io>)
+ - Author:: Ryan Hass (<rhass@chef.io>)
 
 Copyright (c) 2009-2016, Chef Software Inc.
 
