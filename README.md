@@ -1,3 +1,7 @@
+[![Build Status](https://travis-ci.org/chef-cookbooks/rubygems.svg?branch=master)](https://travis-ci.org/chef-cookbooks/rubygems)
+[![Cookbook Version](https://img.shields.io/cookbook/v/rubygems.svg)](https://supermarket.chef.io/cookbooks/rubygems)
+[![License](https://img.shields.io/badge/license-Apache_2-blue.svg)](https://www.apache.org/licenses/LICENSE-2.0)
+
 Description
 ===========
 
@@ -127,4 +131,8 @@ remove all others, you can add `purge true` to either `user` or `gem` resource.
 To talk to a custom gem server, you can say `rubygems_api "https://otherserver.com" do ... end`.
 You can also modify the API key you are by specifying the `api_key` property under `rubygems_api`.
 
-Author:: Apache v2 (<Sean OMeara <someara@opscode.com>>)
+License and Authors
+===================
+Author:: Sean OMeara (<sean@sean.io>)
+Author:: John Keiser (<jkeiser@chef.io>)
+Author:: Ryan Hass (<rhass@chef.io>)
