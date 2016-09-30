@@ -1,6 +1,7 @@
-require 'rubygems'
-require 'uri'
+require "rubygems"
+require "uri"
 
+# rubocop:disable Style/ConstantName
 RubygemsCookbook::Api = self
 
 def initialize(*args, &block)

@@ -1,4 +1,4 @@
-require 'set'
+require "set"
 
 #
 # This user's rubygems handle.
@@ -19,13 +19,14 @@ property :owned_gems, Set,
   #
   # Defaults to false.
   #
-property :purge, [true,false], default: false, desired_state: false
+property :purge, [true, false], default: false, desired_state: false
 
 load_current_value do
   #
   # Grab the current set of owned gems from /api/v1/owners/USERNAME/gems.json.
   #
-  gem_owners rubygems.api.get("api/v1/owners/#{handle}/gems.json", log).map { |_gem| _gem['name'] }
+  # rubocop:disable Lint/UnderscorePrefixedVariableName
+  gem_owners rubygems.api.get("api/v1/owners/#{handle}/gems.json", log).map { |_gem| _gem["name"] }
 end
 
 action :create do

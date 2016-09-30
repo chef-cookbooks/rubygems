@@ -1,4 +1,4 @@
-require 'set'
+require "set"
 
 #
 # The name of the gem. Defaults to the name of the resource.
@@ -26,13 +26,13 @@ property :owners, Set,
 #
 # Defaults to false.
 #
-property :purge, [true,false], default: false, desired_state: false
+property :purge, [true, false], default: false, desired_state: false
 
 #
 # Load owners from /api/v1/gems/GEM/owners.json
 #
 load_current_value do
-  owners rubygems_api.api.get("api/v1/gems/#{gem_name}/owners.json").map { |owner| owner['handle'] || owner['email'] }
+  owners rubygems_api.api.get("api/v1/gems/#{gem_name}/owners.json").map { |owner| owner["handle"] || owner["email"] }
 end
 
 action :create do
