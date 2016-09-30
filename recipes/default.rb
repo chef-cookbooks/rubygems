@@ -1,6 +1,6 @@
 #
 # Author:: Ryan Hass <rhass@chef.io>
-# Author:: Sean OMeara <someara@opscode.com>
+# Author:: Sean OMeara <sean@sean.io>
 # Cookbook Name:: rubygems
 # Recipe:: default
 #

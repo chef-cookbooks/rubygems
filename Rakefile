@@ -72,4 +72,4 @@ namespace :supermarket do
 end
 
 # Default
-task default: %w{style}
+task default: %w{style spec}
