@@ -11,7 +11,7 @@ gems on [rubygems.org](https://rubygems.org).
 
 Requirements
 ============
-Omnibus Chef 12.8.1 or above
+Omnibus Chef 12.5.1 or above
 
 Usage
 =====
