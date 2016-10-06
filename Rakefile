@@ -65,7 +65,12 @@ namespace :supermarket do
     require "stove/rake_task"
 
     desc "Publish cookbook to Supermarket with Stove"
-    Stove::RakeTask.new
+    Stove::RakeTask.new do |t|
+      t.stove_opts = [].tap do |a|
+        a.push("--sign")
+        a.push("--extended-metadata")
+      end
+    end
   rescue LoadError => e
     puts ">>> Gem load error: #{e}, omitting #{task.name}" unless ENV["CI"]
   end
