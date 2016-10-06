@@ -1,4 +1,24 @@
-require 'set'
+#
+# Author:: John Keiser <jkeiser@chef.io>
+# Cookbook Name:: rubygems
+# Resource:: user
+#
+# Copyright 2016, Chef Software Inc.
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#     http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or
+# implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+require "set"
 
 #
 # This user's rubygems handle.
@@ -19,13 +39,14 @@ property :owned_gems, Set,
   #
   # Defaults to false.
   #
-property :purge, [true,false], default: false, desired_state: false
+property :purge, [true, false], default: false, desired_state: false
 
 load_current_value do
   #
   # Grab the current set of owned gems from /api/v1/owners/USERNAME/gems.json.
   #
-  gem_owners rubygems.api.get("api/v1/owners/#{handle}/gems.json", log).map { |_gem| _gem['name'] }
+  # rubocop:disable Lint/UnderscorePrefixedVariableName
+  gem_owners rubygems.api.get("api/v1/owners/#{handle}/gems.json", log).map { |_gem| _gem["name"] }
 end
 
 action :create do
