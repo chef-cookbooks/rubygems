@@ -25,7 +25,6 @@ supports "ubuntu"
 supports "windows"
 supports "zlinux"
 
-issues_url "https://github.com/chef-cookbooks/rubygems/issues" if respond_to?(:issues_url)
-source_url "https://github.com/chef-cookbooks/rubygems" if respond_to?(:source_url)
-
+issues_url "https://github.com/chef-cookbooks/rubygems/issues"
+source_url "https://github.com/chef-cookbooks/rubygems"
 chef_version ">= 12.5.1"
