@@ -13,15 +13,21 @@ describe "rubygems::default" do
       ).converge(described_recipe)
     end
 
-    context "a .gemrc file in the home directory" do
-      it "is created" do
-        expect(chef_run).to create_file(gemrc)
-        expect(chef_run).to create_file(global_gemrc)
+    context "home directory" do
+      it "is not created or modified by this resource" do
+        expect(chef_run).not_to create_directory(::File.dirname(gemrc))
       end
 
-      it "contains the custom source" do
-        expect(chef_run).to render_file(gemrc).with_content("https://rubygems.org")
-        expect(chef_run).to render_file(global_gemrc).with_content("https://rubygems.org")
+      context ".gemrc file" do
+        it "is created" do
+          expect(chef_run).to create_file(gemrc)
+          expect(chef_run).to create_file(global_gemrc)
+        end
+
+        it "contains the default rubygems URL" do
+          expect(chef_run).to render_file(gemrc).with_content("https://rubygems.org")
+          expect(chef_run).to render_file(global_gemrc).with_content("https://rubygems.org")
+        end
       end
     end
   end
@@ -46,13 +52,14 @@ describe "rubygems::default" do
       end.converge(described_recipe)
     end
 
-    context "a .gemrc file in the home directory" do
-      it "contains the custom source" do
-        expect(chef_run).to render_file(gemrc).with_content("http://localhost:9292")
-        expect(chef_run).to render_file(global_gemrc).with_content("https://rubygems.org")
+    context "home directory" do
+      context ".gemrc file" do
+        it "contains the custom source" do
+          expect(chef_run).to render_file(gemrc).with_content("http://localhost:9292")
+          expect(chef_run).to render_file(global_gemrc).with_content("https://rubygems.org")
+        end
       end
     end
-
   end
 
   context "with default sources disabled" do
