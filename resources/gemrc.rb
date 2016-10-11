@@ -46,7 +46,7 @@ action :create do
     user new_resource.user if new_resource.property_is_set?("user")
     group new_resource.group if new_resource.property_is_set?("group")
     recursive true
-    not_if { new_resource.name == :local || new_resource.name == "local" }
+    not_if { new_resource.name.to_sym == :local }
   end
 
   file path do
@@ -59,10 +59,10 @@ end
 private
 
 def coerce_path(value)
-  case value
-  when :local, "local"
+  case value.to_sym
+  when :local
     ::File.join(Dir.home, ".gemrc")
-  when :global, "global"
+  when :global
     Gem::ConfigFile::SYSTEM_WIDE_CONFIG_FILE
   else
     value
