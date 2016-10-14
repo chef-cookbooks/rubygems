@@ -1,14 +1,12 @@
-source "https://rubygems.org"
+# This gemfile provides additional gems for testing and releasing this cookbook
+# It is meant to be installed on top of ChefDK which provides the majority
+# of the necessary gems for testing this cookbook
+#
+# Run 'chef exec bundle install' to install these dependencies
 
-gem "berkshelf"
-gem "chefstyle"
-gem "chefspec"
-gem "foodcritic"
-gem "inspec"
-gem "kitchen-docker"
-# Pin v0.15.1 or v0.16.x or later of kitchen-inspec due to bug https://github.com/chef/inspec/issues/1187
-gem "kitchen-inspec", "< 0.15.2", "~> 0.15"
-gem "rake"
-gem "rspec"
-gem "stove"
-gem "test-kitchen"
+source 'https://rubygems.org'
+
+gem 'tomlrb'
+gem 'rake'
+gem 'stove'
+gem 'community_cookbook_releaser'
