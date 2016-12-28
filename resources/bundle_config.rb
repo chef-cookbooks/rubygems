@@ -1,10 +1,10 @@
 #
 # Author:: Ryan Hass <rhass@chef.io>
 # Author:: John Keiser <jkeiser@chef.io>
-# Cookbook Name:: rubygems
+# Cookbook:: rubygems
 # Resource:: bundle_config
 #
-# Copyright 2016, Chef Software Inc.
+# Copyright:: 2016, Chef Software Inc.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -20,7 +20,7 @@
 # limitations under the License.
 #
 
-require "yaml"
+require 'yaml'
 
 resource_name :bundle_config
 
@@ -35,11 +35,11 @@ load_current_value do
 end
 
 action :create do
-  if current_resource
-    desired_values = current_resource.values.merge(values)
-  else
-    desired_values = values
-  end
+  desired_values = if current_resource
+                     current_resource.values.merge(values)
+                   else
+                     values
+                   end
 
   directory ::File.dirname(path) do
     user new_resource.user if new_resource.property_is_set?(:user)

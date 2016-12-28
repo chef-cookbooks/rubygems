@@ -1,9 +1,9 @@
 #
 # Author:: John Keiser <jkeiser@chef.io>
-# Cookbook Name:: rubygems
+# Cookbook:: rubygems
 # Resource:: gem
 #
-# Copyright 2016, Chef Software Inc.
+# Copyright:: 2016, Chef Software Inc.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -19,7 +19,7 @@
 # limitations under the License.
 #
 
-require "set"
+require 'set'
 
 #
 # The name of the gem. Defaults to the name of the resource.
@@ -29,7 +29,7 @@ property :gem_name, String, name_property: true, identity: true
 #
 # The rubygems_api resource used to communicate with the server.
 #
-property :rubygems_api, RubygemsCookbook::Api, identity: true, default: lazy { RubygemsCookbook::Api.new("rubygems.org", run_context) }
+property :rubygems_api, RubygemsCookbook::Api, identity: true, default: lazy { RubygemsCookbook::Api.new('rubygems.org', run_context) }
 
 #
 # The list of owners.
@@ -53,7 +53,7 @@ property :purge, [true, false], default: false, desired_state: false
 # Load owners from /api/v1/gems/GEM/owners.json
 #
 load_current_value do
-  owners rubygems_api.api.get("api/v1/gems/#{gem_name}/owners.json").map { |owner| owner["handle"] || owner["email"] }
+  owners rubygems_api.api.get("api/v1/gems/#{gem_name}/owners.json").map { |owner| owner['handle'] || owner['email'] }
 end
 
 action :create do

@@ -1,0 +1,19 @@
+# Offense count: 1
+Lint/HandleExceptions:
+  Exclude:
+    - 'resources/api.rb'
+
+# Offense count: 3
+# Configuration parameters: AllowedVariables.
+Style/GlobalVars:
+  Exclude:
+    - 'test/integration/gemrc-local-merge/gemrc_spec.rb'
+    - 'test/integration/gemrc-local/gemrc_spec.rb'
+    - 'test/integration/spec_helper.rb'
+
+# Offense count: 1
+# Cop supports --auto-correct.
+# Configuration parameters: AllowAsExpressionSeparator.
+Style/Semicolon:
+  Exclude:
+    - 'libraries/rubygems_org_api.rb'

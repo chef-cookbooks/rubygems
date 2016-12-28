@@ -1,9 +1,9 @@
 #
 # Author:: John Keiser <jkeiser@chef.io>
-# Cookbook Name:: rubygems
+# Cookbook:: rubygems
 # Livrary:: RubygemsOrgApi
 #
-# Copyright 2016, Chef Software Inc.
+# Copyright:: 2016, Chef Software Inc.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -19,9 +19,9 @@
 # limitations under the License.
 #
 
-require "rubygems/command"
-require "rubygems/gemcutter_utilities"
-require "json"
+require 'rubygems/command'
+require 'rubygems/gemcutter_utilities'
+require 'json'
 
 module ::RubygemsCookbook
   #
@@ -59,9 +59,9 @@ module ::RubygemsCookbook
       end
       begin
         response = rubygems_api_request(method, path, host, allowed_push_host) do |request|
-          request.add_field("Authorization", api_key) if api_key
+          request.add_field('Authorization', api_key) if api_key
           if params
-            params = params.inject({}) { |h, (key, value)| h[key.to_s] = value.to_s; h }
+            params = params.each_with_object({}) { |(key, value), h| h[key.to_s] = value.to_s; h }
             Chef::Log.debug("Form parameters: #{params.map { |key, value| "#{key}=#{value}" }.join(', ')}")
             request.set_form_data(params)
           end
@@ -71,7 +71,7 @@ module ::RubygemsCookbook
         Chef::Log.error("Failed to #{method} #{uri}: #{response}.  Body:")
         Chef::Log.debug(response.body)
         # Create an actually INTELLIGIBLE error message.
-        new_exception = e.class.new("#{$!.message} from #{method.to_s.upcase} #{uri}", e.response)
+        new_exception = e.class.new("#{$ERROR_INFO.message} from #{method.to_s.upcase} #{uri}", e.response)
         new_exception.set_backtrace(e.backtrace)
         raise new_exception
       end

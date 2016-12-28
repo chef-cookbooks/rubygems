@@ -1,25 +1,25 @@
 #
-# Cookbook Name:: test_rubygems
+# Cookbook:: test_rubygems
 # Recipe:: default
 #
-# Copyright (c) 2016 The Authors, All Rights Reserved.
+# Copyright:: 2016, The Authors, All Rights Reserved.
 #
 
-file File.join(Dir.home, ".gemrc") do
+file File.join(Dir.home, '.gemrc') do
   content({
     backtrace: false,
     bulk_threshold: 1000,
-    sources: %w{
-       http://localhost:9292
-    },
+    sources: %w(
+      http://localhost:9292
+    ),
     verbose: true,
-    install: "--user --no-document",
-    update: "--user --no-document",
+    install: '--user --no-document',
+    update: '--user --no-document',
   }.to_yaml)
 end
 
 gemrc :local do
   values(
-    sources: %w{https://rubygems.org}
+    sources: %w(https://rubygems.org)
   )
 end

@@ -1,10 +1,10 @@
 #
 # Author:: Ryan Hass <rhass@chef.io>
 # Author:: John Keiser <jkeiser@chef.io>
-# Cookbook Name:: rubygems
+# Cookbook:: rubygems
 # Resource:: gemrc
 #
-# Copyright 2016, Chef Software Inc.
+# Copyright:: 2016, Chef Software Inc.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -20,7 +20,7 @@
 # limitations under the License.
 #
 
-require "yaml"
+require 'yaml'
 include Chef::Mixin::DeepMerge
 
 resource_name :gemrc
@@ -36,22 +36,22 @@ load_current_value do
 end
 
 action :create do
-  if current_resource
-    desired_values = current_resource.values.merge(values)
-  else
-    desired_values = values
-  end
+  desired_values = if current_resource
+                     current_resource.values.merge(values)
+                   else
+                     values
+                   end
 
   directory ::File.dirname(path) do
-    user new_resource.user if new_resource.property_is_set?("user")
-    group new_resource.group if new_resource.property_is_set?("group")
+    user new_resource.user if new_resource.property_is_set?('user')
+    group new_resource.group if new_resource.property_is_set?('group')
     recursive true
     not_if { new_resource.name.to_sym == :local }
   end
 
   file path do
-    user new_resource.user if new_resource.property_is_set?("user")
-    group new_resource.group if new_resource.property_is_set?("group")
+    user new_resource.user if new_resource.property_is_set?('user')
+    group new_resource.group if new_resource.property_is_set?('group')
     content YAML.dump(desired_values)
   end
 end
@@ -61,7 +61,7 @@ private
 def coerce_path(value)
   case value.to_sym
   when :local
-    ::File.join(Dir.home, ".gemrc")
+    ::File.join(Dir.home, '.gemrc')
   when :global
     Gem::ConfigFile::SYSTEM_WIDE_CONFIG_FILE
   else

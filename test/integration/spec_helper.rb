@@ -1,11 +1,11 @@
 $platforms = {
-  "ubuntu" => {
-    "home" => "/home/kitchen",
+  'ubuntu' => {
+    'home' => '/home/kitchen',
   },
-  "redhat" => {
-    "home" => "/root",
+  'redhat' => {
+    'home' => '/root',
   },
-  "debian" => {
-    "home" => "/home/kitchen",
+  'debian' => {
+    'home' => '/home/kitchen',
   },
 }

@@ -1,10 +1,10 @@
 #
 # Author:: Ryan Hass <rhass@chef.io>
 # Author:: Sean OMeara <sean@sean.io>
-# Cookbook Name:: rubygems
+# Cookbook:: rubygems
 # Recipe:: default
 #
-# Copyright 2009-2016, Chef Software Inc.
+# Copyright:: 2009-2016, Chef Software Inc.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -20,33 +20,33 @@
 #
 
 # gem_package sources
-gemrc "local_disable_default" do
+gemrc 'local_disable_default' do
   name :local
   values(
-    sources: node["rubygems"]["gem_sources"] - %w{http://rubygems.org https://rubygems.org}
+    sources: node['rubygems']['gem_sources'] - %w(http://rubygems.org https://rubygems.org)
   )
-  only_if { node["rubygems"]["gem_disable_default"] }
+  only_if { node['rubygems']['gem_disable_default'] }
 end
 
-gemrc "local_gem_sources" do
+gemrc 'local_gem_sources' do
   name :local
   values(
-    sources: node["rubygems"]["gem_sources"]
+    sources: node['rubygems']['gem_sources']
   )
 end
 
 # chef_gem sources
-gemrc "chef_gem_disable_default" do
+gemrc 'chef_gem_disable_default' do
   name :global
   values(
-    sources: node["rubygems"]["chef_gem_sources"] - %w{http://rubygems.org https://rubygems.org}
+    sources: node['rubygems']['chef_gem_sources'] - %w(http://rubygems.org https://rubygems.org)
   )
-  only_if { node["rubygems"]["chef_gem_disable_default"] }
+  only_if { node['rubygems']['chef_gem_disable_default'] }
 end
 
-gemrc "chef_gem_sources" do
+gemrc 'chef_gem_sources' do
   name :global
   values(
-    sources: node["rubygems"]["chef_gem_sources"]
+    sources: node['rubygems']['chef_gem_sources']
   )
 end

@@ -1,8 +1,8 @@
 #
-# Cookbook Name:: rubygems
+# Cookbook:: rubygems
 # Attributes:: default
 #
-# Copyright 2009-2016, Chef Software, Inc.
+# Copyright:: 2009-2016, Chef Software, Inc.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -17,7 +17,7 @@
 # limitations under the License.
 #
 
-default["rubygems"]["gem_disable_default"] = false
-default["rubygems"]["gem_sources"] = [ "https://rubygems.org" ]
-default["rubygems"]["chef_gem_disable_default"] = false
-default["rubygems"]["chef_gem_sources"] = [ "https://rubygems.org" ]
+default['rubygems']['gem_disable_default'] = false
+default['rubygems']['gem_sources'] = ['https://rubygems.org']
+default['rubygems']['chef_gem_disable_default'] = false
+default['rubygems']['chef_gem_sources'] = ['https://rubygems.org']

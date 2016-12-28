@@ -1,9 +1,9 @@
 #
 # Author:: John Keiser <jkeiser@chef.io>
-# Cookbook Name:: rubygems
+# Cookbook:: rubygems
 # Resource:: user
 #
-# Copyright 2016, Chef Software Inc.
+# Copyright:: 2016, Chef Software Inc.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -18,13 +18,13 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-require "set"
+require 'set'
 
 #
 # This user's rubygems handle.
 #
 property :handle, String, identity: true, default: lazy { name }
-property :rubygems_api, RubygemsCookbook::Api, identity: true, default: lazy { RubygemsCookbook::Api.new("rubygems.org") }
+property :rubygems_api, RubygemsCookbook::Api, identity: true, default: lazy { RubygemsCookbook::Api.new('rubygems.org') }
 
 #
 # The set of gems this user owns.
@@ -34,11 +34,11 @@ property :owned_gems, Set,
   default: lazy { current_value.owned_gems },
   coerce: proc { |value| value.to_set }
 
-  #
-  # `true` to remove the user's gem ownership from any gems not specified in `owned_gems`.
-  #
-  # Defaults to false.
-  #
+#
+# `true` to remove the user's gem ownership from any gems not specified in `owned_gems`.
+#
+# Defaults to false.
+#
 property :purge, [true, false], default: false, desired_state: false
 
 load_current_value do
@@ -46,7 +46,7 @@ load_current_value do
   # Grab the current set of owned gems from /api/v1/owners/USERNAME/gems.json.
   #
   # rubocop:disable Lint/UnderscorePrefixedVariableName
-  gem_owners rubygems.api.get("api/v1/owners/#{handle}/gems.json", log).map { |_gem| _gem["name"] }
+  gem_owners rubygems.api.get("api/v1/owners/#{handle}/gems.json", log).map { |_gem| _gem['name'] }
 end
 
 action :create do

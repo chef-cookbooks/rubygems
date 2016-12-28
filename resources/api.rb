@@ -1,9 +1,9 @@
 #
 # Author:: John Keiser <jkeiser@chef.io>
-# Cookbook Name:: rubygems
+# Cookbook:: rubygems
 # Resource:: api
 #
-# Copyright 2016, Chef Software Inc.
+# Copyright:: 2016, Chef Software Inc.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -19,8 +19,8 @@
 # limitations under the License.
 #
 
-require "rubygems"
-require "uri"
+require 'rubygems'
+require 'uri'
 
 # rubocop:disable Style/ConstantName
 RubygemsCookbook::Api = self
@@ -30,9 +30,7 @@ def initialize(*args, &block)
   # Default host to name if user says rubygems_api "https://rubygems.org" or similar
   begin
     uri = URI(name)
-    if uri.is_a?(URI::HTTP)
-      host uri
-    end
+    host uri if uri.is_a?(URI::HTTP)
   rescue URI::InvalidURIError, ArgumentError
   end
 end
@@ -132,8 +130,8 @@ end
 # Allow `rubygems_api do` rather than just `rubygems_api "blah" do`
 module Chef::DSL::Recipe
   def rubygems_api(*args, &block)
-    if args.size == 0
-      super("rubygems.org", &block)
+    if args.empty?
+      super('rubygems.org', &block)
     else
       super
     end
