@@ -1,18 +1,24 @@
-language: ruby
-sudo: false
-cache: bundler
-services:
-  - docker
+sudo: required
+dist: trusty
 
+# install the pre-release chef-dk.  Use chef-stable-trusty to install the stable release
 addons:
   apt:
+    sources:
+      - chef-current-trusty
     packages:
+    - chefdk
     - libgecode-dev
     - coreutils
+
+# Don't `bundle install` which takes about 1.5 mins
+install: echo "skip bundle install"
 
 branches:
   only:
     - master
+
+services: docker
 
 env:
   global:
@@ -29,6 +35,18 @@ env:
     - KITCHEN_REGEXP=bundle-config-ubuntu-1404
     - KITCHEN_REGEXP=bundle-config-centos-72
 
-script:
-  - bundle exec rake
-  - bundle exec rake integration:kitchen:$KITCHEN_REGEXP
+before_script:
+  - sudo iptables -L DOCKER || ( echo "DOCKER iptables chain missing" ; sudo iptables -N DOCKER )
+  - eval "$(/opt/chefdk/bin/chef shell-init bash)"
+  - /opt/chefdk/embedded/bin/chef --version
+  - /opt/chefdk/embedded/bin/cookstyle --version
+  - /opt/chefdk/embedded/bin/foodcritic --version
+  - /opt/chefdk/embedded/bin/chef gem install kitchen-docker
+
+script: /opt/chefdk/embedded/bin/kitchen verify ${KITCHEN_REGEXP}
+
+matrix:
+  include:
+    - script:
+      - /opt/chefdk/bin/chef exec rake
+      env: UNIT_AND_LINT=1
