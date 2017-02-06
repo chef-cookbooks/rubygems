@@ -31,7 +31,7 @@ end
 gemrc 'local_gem_sources' do
   name :local
   values(
-    sources: node['rubygems']['gem_sources']
+    sources: node['rubygems']['gem_sources'].to_a
   )
 end
 
@@ -47,6 +47,6 @@ end
 gemrc 'chef_gem_sources' do
   name :global
   values(
-    sources: node['rubygems']['chef_gem_sources']
+    sources: node['rubygems']['chef_gem_sources'].to_a
   )
 end
