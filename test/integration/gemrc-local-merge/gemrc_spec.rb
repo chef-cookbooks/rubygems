@@ -1,8 +1,6 @@
-require_relative '../spec_helper'
-
 describe 'gemrc configuration' do
   context ':local merged with existing values' do
-    let(:config) { File.join($platforms[os[:family].to_s]['home'], '.gemrc') }
+    let(:config) { '/root/.gemrc' }
 
     it 'has a .gemrc file in the home directory' do
       expect(file(config)).to exist
