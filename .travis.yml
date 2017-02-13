@@ -25,15 +25,15 @@ env:
   - USE_SYSTEM_GECODE=true
   matrix:
     - KITCHEN_REGEXP=gemrc-global-ubuntu-1404
-    - KITCHEN_REGEXP=gemrc-global-centos-72
+    - KITCHEN_REGEXP=gemrc-global-centos-73
     - KITCHEN_REGEXP=gemrc-local-ubuntu-1404
-    - KITCHEN_REGEXP=gemrc-local-centos-72
+    - KITCHEN_REGEXP=gemrc-local-centos-73
     - KITCHEN_REGEXP=gemrc-explicit-path-ubuntu-1404
-    - KITCHEN_REGEXP=gemrc-explicit-path-centos-72
+    - KITCHEN_REGEXP=gemrc-explicit-path-centos-73
     - KITCHEN_REGEXP=gemrc-local-merge-ubuntu-1404
-    - KITCHEN_REGEXP=gemrc-local-merge-centos-72
+    - KITCHEN_REGEXP=gemrc-local-merge-centos-73
     - KITCHEN_REGEXP=bundle-config-ubuntu-1404
-    - KITCHEN_REGEXP=bundle-config-centos-72
+    - KITCHEN_REGEXP=bundle-config-centos-73
 
 before_script:
   - sudo iptables -L DOCKER || ( echo "DOCKER iptables chain missing" ; sudo iptables -N DOCKER )
