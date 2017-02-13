@@ -6,7 +6,12 @@
 
 source 'https://rubygems.org'
 
-gem 'tomlrb'
-gem 'rake'
-gem 'stove'
+gem 'berkshelf'
+gem 'chefspec'
 gem 'community_cookbook_releaser'
+gem 'cookstyle'
+gem 'foodcritic'
+gem 'rake'
+gem 'rspec'
+gem 'stove'
+gem 'tomlrb'
