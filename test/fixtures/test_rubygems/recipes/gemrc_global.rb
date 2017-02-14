@@ -1,8 +1,8 @@
 #
 # Cookbook:: test_rubygems
-# Recipe:: default
+# Recipe:: gemrc_global
 #
-# Copyright:: 2016, The Authors, All Rights Reserved.
+# Copyright:: 2016-2017, Ryan Hass
 #
 
 gemrc :global do

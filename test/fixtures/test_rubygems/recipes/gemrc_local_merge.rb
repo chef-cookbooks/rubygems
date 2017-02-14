@@ -1,8 +1,8 @@
 #
 # Cookbook:: test_rubygems
-# Recipe:: default
+# Recipe:: gemrc_local_merge
 #
-# Copyright:: 2016, The Authors, All Rights Reserved.
+# Copyright:: 2016-2017, Ryan Hass
 #
 
 file File.join(Dir.home, '.gemrc') do

@@ -5,7 +5,7 @@ dist: trusty
 addons:
   apt:
     sources:
-      - chef-current-trusty
+      - chef-stable-trusty
     packages:
     - chefdk
     - libgecode-dev
@@ -24,16 +24,26 @@ env:
   global:
   - USE_SYSTEM_GECODE=true
   matrix:
-    - KITCHEN_REGEXP=gemrc-global-ubuntu-1404
-    - KITCHEN_REGEXP=gemrc-global-centos-73
-    - KITCHEN_REGEXP=gemrc-local-ubuntu-1404
-    - KITCHEN_REGEXP=gemrc-local-centos-73
-    - KITCHEN_REGEXP=gemrc-explicit-path-ubuntu-1404
-    - KITCHEN_REGEXP=gemrc-explicit-path-centos-73
-    - KITCHEN_REGEXP=gemrc-local-merge-ubuntu-1404
-    - KITCHEN_REGEXP=gemrc-local-merge-centos-73
-    - KITCHEN_REGEXP=bundle-config-ubuntu-1404
-    - KITCHEN_REGEXP=bundle-config-centos-73
+  - INSTANCE=gemrc-global-ubuntu-1404
+  - INSTANCE=gemrc-global-ubuntu-1604
+  - INSTANCE=gemrc-global-centos-6
+  - INSTANCE=gemrc-global-centos-7
+  - INSTANCE=gemrc-local-ubuntu-1404
+  - INSTANCE=gemrc-local-ubuntu-1604
+  - INSTANCE=gemrc-local-centos-6
+  - INSTANCE=gemrc-local-centos-7
+  - INSTANCE=gemrc-explicit-path-ubuntu-1404
+  - INSTANCE=gemrc-explicit-path-ubuntu-1604
+  - INSTANCE=gemrc-explicit-path-centos-6
+  - INSTANCE=gemrc-explicit-path-centos-7
+  - INSTANCE=gemrc-local-merge-ubuntu-1404
+  - INSTANCE=gemrc-local-merge-ubuntu-1604
+  - INSTANCE=gemrc-local-merge-centos-6
+  - INSTANCE=gemrc-local-merge-centos-7
+  - INSTANCE=bundle-config-ubuntu-1404
+  - INSTANCE=bundle-config-ubuntu-1604
+  - INSTANCE=bundle-config-centos-6
+  - INSTANCE=bundle-config-centos-7
 
 before_script:
   - sudo iptables -L DOCKER || ( echo "DOCKER iptables chain missing" ; sudo iptables -N DOCKER )
@@ -41,9 +51,8 @@ before_script:
   - /opt/chefdk/embedded/bin/chef --version
   - /opt/chefdk/embedded/bin/cookstyle --version
   - /opt/chefdk/embedded/bin/foodcritic --version
-  - /opt/chefdk/embedded/bin/chef gem install kitchen-docker
 
-script: /opt/chefdk/embedded/bin/kitchen verify ${KITCHEN_REGEXP}
+script: KITCHEN_LOCAL_YAML=.kitchen.docker.yml /opt/chefdk/embedded/bin/kitchen verify ${INSTANCE}
 
 matrix:
   include:
