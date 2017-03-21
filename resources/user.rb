@@ -82,7 +82,7 @@ action :create do
 end
 
 # sadness :(
-action_class do
+action_class.class_eval do
   def whyrun_supported?
     true
   end
