@@ -2,6 +2,10 @@
 
 This file is used to list changes made in each version of the rubygems cookbook.
 
+## 1.1.0 (2017-05-30)
+
+- Remove class_eval usage and require Chef 12.7+
+
 ## 1.0.4 (2017-04-17)
 
 - Use kitchen-dokken for integration testing in Travis and switch to delivery local for testing instead of the Rakefile
