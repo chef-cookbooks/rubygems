@@ -8,7 +8,7 @@ This cookbook configures "system" and Omnibus Chef gem sources, as well as provi
 
 ### Chef
 
-- 12.5.1 or later
+- 12.7 or later
 
 ## Usage
 
