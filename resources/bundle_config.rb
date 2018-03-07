@@ -36,18 +36,18 @@ end
 
 action :create do
   desired_values = if current_resource
-                     current_resource.values.merge(values)
+                     current_resource.values.merge(new_resource.values)
                    else
-                     values
+                     new_resource.values
                    end
 
-  directory ::File.dirname(path) do
+  directory ::File.dirname(new_resource.path) do
     user new_resource.user if new_resource.property_is_set?(:user)
     group new_resource.group if new_resource.property_is_set?(:group)
     recursive true
   end
 
-  file path do
+  file new_resource.path do
     user new_resource.user if new_resource.property_is_set?(:user)
     group new_resource.group if new_resource.property_is_set?(:group)
     content YAML.dump(desired_values)
