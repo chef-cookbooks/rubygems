@@ -2,6 +2,10 @@
 
 This file is used to list changes made in each version of the rubygems cookbook.
 
+## 1.1.1 (2018-03-07)
+
+- Resolve Chef 14 incompatibilies
+
 ## 1.1.0 (2017-05-30)
 
 - Remove class_eval usage and require Chef 12.7+
