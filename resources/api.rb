@@ -22,7 +22,7 @@
 require 'rubygems'
 require 'uri'
 
-# rubocop:disable Style/ConstantName
+# rubocop:disable Naming/ConstantName
 RubygemsCookbook::Api = self
 
 def initialize(*args, &block)
