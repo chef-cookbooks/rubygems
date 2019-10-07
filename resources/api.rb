@@ -3,7 +3,7 @@
 # Cookbook:: rubygems
 # Resource:: api
 #
-# Copyright:: 2016-2017, Chef Software Inc.
+# Copyright:: 2016-2019, Chef Software Inc.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -36,7 +36,7 @@ def initialize(*args, &block)
 end
 
 #
-# The Rubygems host the gems are stored on.  Defaults to whatever is in your
+# The Rubygems host the gems are stored on. Defaults to whatever is in your
 # current gem configuration. If `name` is specified as an http or https URL,
 # uses that.
 #
