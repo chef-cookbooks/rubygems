@@ -39,7 +39,7 @@ property :owned_gems, Set,
 #
 # Defaults to false.
 #
-property :purge, [true, false], default: false, desired_state: false
+property :purge, [TrueClass, FalseClass], default: false, desired_state: false
 
 load_current_value do
   #
