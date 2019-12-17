@@ -47,7 +47,7 @@ property :owners, Set,
 #
 # Defaults to false.
 #
-property :purge, [TrueClass, FalseClass], default: false, desired_state: false
+property :purge, [true, false], default: false, desired_state: false
 
 #
 # Load owners from /api/v1/gems/GEM/owners.json
