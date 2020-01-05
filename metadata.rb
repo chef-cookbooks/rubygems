@@ -24,4 +24,4 @@ supports 'zlinux'
 
 issues_url 'https://github.com/chef-cookbooks/rubygems/issues'
 source_url 'https://github.com/chef-cookbooks/rubygems'
-chef_version '>= 12.7'
+chef_version '>= 12.15'
