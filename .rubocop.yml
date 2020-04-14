@@ -1,4 +1,4 @@
-Lint/HandleExceptions:
+Lint/SuppressedException:
   Exclude:
     - 'resources/api.rb'
 
