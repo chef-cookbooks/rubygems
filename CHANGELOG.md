@@ -2,10 +2,20 @@
 
 This file is used to list changes made in each version of the rubygems cookbook.
 
-## Unreleased
+## 1.2.0 (2020-06-02)
 
-- resolved cookstyle error: resources/bundle_config.rb:25:1 warning: `ChefDeprecations/ResourceUsesOnlyResourceName`
-- resolved cookstyle error: resources/gemrc.rb:26:1 warning: `ChefDeprecations/ResourceUsesOnlyResourceName`
+- Update the platforms we test on - [@tas50](https://github.com/tas50)
+- Add code owners file - [@tas50](https://github.com/tas50)
+- Rename the kitchen config - [@tas50](https://github.com/tas50)
+- Cookstyle fixes - [@tas50](https://github.com/tas50)
+- Resolve cookstyle 5.8 warnings - [@tas50](https://github.com/tas50)
+- Require Chef 12.15+ - [@tas50](https://github.com/tas50)
+- Lint/SuppressedException - [@Xorima](https://github.com/Xorima)
+- Use the org wide GitHub templates - [@tas50](https://github.com/tas50)
+- Update ChefSpec platforms - [@tas50](https://github.com/tas50)
+- Chef Infra Client 16 compatibility fixes - [@Xorima](https://github.com/Xorima)
+  - resolved cookstyle error: resources/bundle_config.rb:25:1 warning: `ChefDeprecations/ResourceUsesOnlyResourceName`
+  - resolved cookstyle error: resources/gemrc.rb:26:1 warning: `ChefDeprecations/ResourceUsesOnlyResourceName`
 
 ## 1.1.1 (2018-03-07)
 

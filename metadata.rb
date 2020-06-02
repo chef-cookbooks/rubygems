@@ -3,7 +3,7 @@ maintainer       'Ryan Hass'
 maintainer_email 'Ryan Hass <rhass+community-cookbooks@chef.io>'
 license          'Apache-2.0'
 description      'Configures rubygems and bundler'
-version          '1.1.1'
+version          '1.2.0'
 
 supports 'amazon'
 supports 'centos'
