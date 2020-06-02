@@ -2,6 +2,11 @@
 
 This file is used to list changes made in each version of the rubygems cookbook.
 
+## Unreleased
+
+- resolved cookstyle error: resources/bundle_config.rb:25:1 warning: `ChefDeprecations/ResourceUsesOnlyResourceName`
+- resolved cookstyle error: resources/gemrc.rb:26:1 warning: `ChefDeprecations/ResourceUsesOnlyResourceName`
+
 ## 1.1.1 (2018-03-07)
 
 - Resolve Chef 14 incompatibilies

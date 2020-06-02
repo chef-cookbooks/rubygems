@@ -22,7 +22,7 @@
 
 require 'yaml'
 
-resource_name :bundle_config
+provides :bundle_config
 
 property :path, String, name_property: true
 property :user, String

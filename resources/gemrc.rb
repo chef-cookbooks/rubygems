@@ -23,7 +23,7 @@
 require 'yaml'
 include Chef::Mixin::DeepMerge
 
-resource_name :gemrc
+provides :gemrc
 
 property :path, String, name_property: true, coerce: proc { |path| coerce_path(path) }
 property :user, String
