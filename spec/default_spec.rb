@@ -8,7 +8,7 @@ describe 'rubygems::default' do
     let(:chef_run) do
       ChefSpec::ServerRunner.new(
         platform: 'ubuntu',
-        version: '14.04',
+        version: '18.04',
         step_into: 'gemrc'
       ).converge(described_recipe)
     end
@@ -36,7 +36,7 @@ describe 'rubygems::default' do
     let(:chef_run) do
       ChefSpec::ServerRunner.new(
         platform: 'ubuntu',
-        version: '14.04',
+        version: '18.04',
         step_into: 'gemrc'
       ) do |node|
         # There appears to be a bug in ChefSpec in which the output renders
@@ -66,7 +66,7 @@ describe 'rubygems::default' do
     let(:chef_run) do
       ChefSpec::ServerRunner.new(
         platform: 'ubuntu',
-        version: '14.04',
+        version: '18.04',
         step_into: 'gemrc'
       ) do |node|
         node.force_default['rubygems']['gem_sources'] = ['http://localhost:9292']
