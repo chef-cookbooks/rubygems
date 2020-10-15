@@ -6,7 +6,7 @@
 #
 
 file File.join(Dir.home, '.gemrc') do
-  content({
+  content(YAML.dump({
     backtrace: false,
     bulk_threshold: 1000,
     sources: %w(
@@ -15,7 +15,7 @@ file File.join(Dir.home, '.gemrc') do
     verbose: true,
     install: '--user --no-document',
     update: '--user --no-document',
-  }.to_yaml)
+  }))
 end
 
 gemrc :local do
