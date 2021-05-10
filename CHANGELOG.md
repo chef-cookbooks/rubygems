@@ -2,6 +2,11 @@
 
 This file is used to list changes made in each version of the rubygems cookbook.
 
+## Unreleased
+
+- resolved cookstyle error: resources/bundle_config.rb:1:1 refactor: `Chef/Deprecations/ResourceWithoutUnifiedTrue`
+- resolved cookstyle error: resources/gemrc.rb:1:1 refactor: `Chef/Deprecations/ResourceWithoutUnifiedTrue`
+
 ## 1.2.0 (2020-06-02)
 
 - Update the platforms we test on - [@tas50](https://github.com/tas50)

@@ -23,6 +23,7 @@
 require 'yaml'
 
 provides :bundle_config
+unified_mode true
 
 property :path, String, name_property: true
 property :user, String
