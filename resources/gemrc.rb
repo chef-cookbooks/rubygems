@@ -24,6 +24,7 @@ require 'yaml'
 include Chef::Mixin::DeepMerge
 
 provides :gemrc
+unified_mode true
 
 property :path, String, name_property: true, coerce: proc { |path| coerce_path(path) }
 property :user, String
